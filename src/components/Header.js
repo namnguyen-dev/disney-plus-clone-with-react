@@ -19,7 +19,6 @@ const Header = props => {
   useEffect(() => {
     if (!userName) {
       auth.onAuthStateChanged(async user => {
-        console.log(user);
         if (user) {
           setUser(user);
           history.push('/home');

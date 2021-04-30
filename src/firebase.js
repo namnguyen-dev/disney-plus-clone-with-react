@@ -1,4 +1,5 @@
-import firebase from 'firebase'
+import firebase from 'firebase';
+import { seedDatabase } from './seed';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAuzQcw2YFm5AzVLEkFbue2wf0JGYJjEMY',
@@ -15,6 +16,9 @@ const db = firebaseApp.firestore();
 const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 const storage = firebase.storage();
+
+// run the seed file to add data to firebase(only ONCE!)
+// seedDatabase(firebaseApp);
 
 export { auth, provider, storage };
 export default db;

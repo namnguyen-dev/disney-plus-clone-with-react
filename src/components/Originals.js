@@ -1,43 +1,26 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectOriginal } from '../features/movie/movieSlice';
 
 const Originals = props => {
+  const movies = useSelector(selectOriginal);
+
   return (
     <Container>
       <h4>Originals</h4>
       <Content>
-        <Wrap>
-          <Link to="/">
-            <img
-              src="https://lumiere-a.akamaihd.net/v1/images/p_onward_19024_dbb512d5.jpeg"
-              alt=""
-            />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img
-              src="https://lumiere-a.akamaihd.net/v1/images/p_onward_19024_dbb512d5.jpeg"
-              alt=""
-            />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img
-              src="https://lumiere-a.akamaihd.net/v1/images/p_onward_19024_dbb512d5.jpeg"
-              alt=""
-            />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img
-              src="https://lumiere-a.akamaihd.net/v1/images/p_onward_19024_dbb512d5.jpeg"
-              alt=""
-            />
-          </Link>
-        </Wrap>
+        {movies &&
+          movies.map(movie => {
+            const { id, cardImg, title } = movie;
+            return (
+              <Wrap key={id}>
+                <Link to={'/detail/' + id}>
+                  <img src={cardImg} alt={title} />
+                </Link>
+              </Wrap>
+            );
+          })}
       </Content>
     </Container>
   );
@@ -92,4 +75,4 @@ const Wrap = styled.div`
   }
 `;
 
-export default Originals
+export default Originals;
